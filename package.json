@@ -1,0 +1,66 @@
+{
+  "name": "automation-toolv2",
+  "version": "1.0.0",
+  "description": "Web Previewer - Electron app to preview websites with a side control pane.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev": "cross-env NODE_ENV=development electronmon .",
+    "playwright-install": "playwright install chromium",
+    "build": "electron-builder --win",
+    "build:portable": "electron-builder --win portable",
+    "dist": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "@electron/remote": "^2.1.3",
+    "@types/node": "^24.3.1",
+    "cross-env": "^10.0.0",
+    "electron": "^38.1.0",
+    "electron-builder": "^24.13.3",
+    "electronmon": "^2.0.3",
+    "playwright": "^1.55.0"
+  },
+  "build": {
+    "appId": "com.web-previewer.app",
+    "productName": "Web Previewer",
+    "directories": {
+      "buildResources": "."
+    },
+    "files": [
+      "**/*",
+      "!node_modules/.cache/**",
+      "!**/*.map"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "favicon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": false,
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
